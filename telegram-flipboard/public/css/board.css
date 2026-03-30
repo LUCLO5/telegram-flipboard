@@ -1,0 +1,27 @@
+#board {
+  display: grid;
+  gap: var(--tile-gap, 3px);
+  background: #111;
+  padding: 18px 20px;
+  border-radius: 6px;
+  border: 1px solid #1a1a1a;
+  box-shadow:
+    0 0 60px rgba(0, 0, 0, 0.9),
+    inset 0 0 30px rgba(0, 0, 0, 0.6);
+
+  /* horizontal accent bars above/below */
+  position: relative;
+}
+
+#board::before,
+#board::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #FFB800 20%, #FFB800 80%, transparent);
+  opacity: 0.15;
+}
+#board::before { top: 0;    border-radius: 6px 6px 0 0; }
+#board::after  { bottom: 0; border-radius: 0 0 6px 6px; }

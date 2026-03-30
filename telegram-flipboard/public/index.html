@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlipBoard</title>
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/board.css" />
+  <link rel="stylesheet" href="css/tile.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <div id="app">
+
+    <header id="header">
+      <div class="header-inner">
+        <span class="logo">FLIPBOARD</span>
+        <span id="status" class="status disconnected">● DISCONNECTED</span>
+      </div>
+    </header>
+
+    <main id="board-wrap">
+      <div id="board"></div>
+    </main>
+
+    <footer id="footer">
+      <span id="footer-hint">Send a message to your Telegram bot to display it here</span>
+      <span class="shortcuts">F = fullscreen &nbsp;·&nbsp; M = mute</span>
+    </footer>
+
+  </div>
+
+  <!-- load order matters -->
+  <script src="js/constants.js"></script>
+  <script src="js/SoundEngine.js"></script>
+  <script src="js/Tile.js"></script>
+  <script src="js/Board.js"></script>
+  <script src="js/TelegramReceiver.js"></script>
+  <script src="js/KeyboardController.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

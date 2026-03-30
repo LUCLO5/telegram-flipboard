@@ -1,0 +1,30 @@
+/* Default (large screens / TV) — tile vars set in constants.js via JS */
+
+@media (max-width: 1200px) {
+  :root {
+    --tile-w:  28px;
+    --tile-h:  40px;
+    --tile-fs: 17px;
+    --tile-gap: 2px;
+  }
+}
+
+@media (max-width: 800px) {
+  :root {
+    --tile-w:  20px;
+    --tile-h:  28px;
+    --tile-fs: 12px;
+    --tile-gap: 2px;
+  }
+  .logo { display: none; }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --tile-w:  14px;
+    --tile-h:  20px;
+    --tile-fs: 8px;
+    --tile-gap: 1px;
+  }
+  #footer { display: none; }
+}

@@ -1,0 +1,95 @@
+/* ── Base tile ─────────────────────────────────────────────────────────── */
+.tile {
+  --w: var(--tile-w, 36px);
+  --h: var(--tile-h, 50px);
+  --fs: var(--tile-fs, 22px);
+
+  width:  var(--w);
+  height: var(--h);
+  background: #1c1a0e;
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.04),
+    0 2px 6px rgba(0,0,0,0.6);
+  transition: background 0.05s;
+}
+
+/* ── Split-flap divider line ─────────────────────────────────────────── */
+.tile::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  top: 50%;
+  height: 2px;
+  background: #000;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ── Character (rendered as two halves via clip) ─────────────────────── */
+.tile-top,
+.tile-bottom {
+  position: absolute;
+  left: 0; right: 0;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: var(--fs);
+  font-weight: 700;
+  color: #FFB800;
+  text-shadow: 0 0 10px rgba(255, 184, 0, 0.35);
+  user-select: none;
+  overflow: hidden;
+  line-height: 1;
+}
+
+.tile-top {
+  top: 0;
+  /* show top half of glyph */
+  align-items: flex-end;
+  padding-bottom: 1px;
+}
+
+.tile-bottom {
+  bottom: 0;
+  /* show bottom half of glyph */
+  align-items: flex-start;
+  padding-top: 1px;
+}
+
+/* ── Scramble / flash state ───────────────────────────────────────────── */
+.tile.scrambling {
+  background: var(--flash-bg, #1c1a0e);
+}
+
+.tile.scrambling .tile-top,
+.tile.scrambling .tile-bottom {
+  color: #fff;
+  text-shadow: none;
+}
+
+/* ── Subtle flip animation on the top-half card ─────────────────────── */
+@keyframes flipTop {
+  0%   { transform: rotateX(0deg);    }
+  50%  { transform: rotateX(-90deg);  }
+  100% { transform: rotateX(-90deg);  }
+}
+@keyframes flipBottom {
+  0%   { transform: rotateX(90deg);  }
+  50%  { transform: rotateX(90deg);  }
+  100% { transform: rotateX(0deg);   }
+}
+
+.tile.flipping .tile-top {
+  transform-origin: bottom center;
+  animation: flipTop 0.12s ease-in forwards;
+}
+
+.tile.flipping .tile-bottom {
+  transform-origin: top center;
+  animation: flipBottom 0.12s ease-out 0.06s forwards;
+}
