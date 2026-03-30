@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // ─── WebSocket server ─────────────────────────────────────────────────────────
 const wss = new WebSocketServer({ server });
 const clients = new Set();
-let lastMessage = 'WELCOME TO FLIPBOARD';
+let lastMessage = 'WELCOME TO FLIPBOARD\nSEND A TELEGRAM MESSAGE';
 
 wss.on('connection', (ws) => {
   clients.add(ws);
